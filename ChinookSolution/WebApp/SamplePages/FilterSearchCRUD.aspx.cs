@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 #region Additional Namespaces
 using ChinookSystem.BLL;
 using ChinookSystem.Data.Entities;
-
 #endregion
 
 namespace WebApp.SamplePages
@@ -40,6 +39,13 @@ namespace WebApp.SamplePages
 
         }
 
+        // in code behind to be called from ODS
+        protected void CheckForException(object sender,ObjectDataSourceStatusEventArgs e)
+        {
+            MessageUserControl.HandleDataBoundException(e);
+        }
+
+
         protected void AlbumList_SelectedIndexChanged(object sender, EventArgs e)
         {
             // standard lookup
@@ -49,24 +55,27 @@ namespace WebApp.SamplePages
             string albumid = (agvrow.FindControl("AlbumID") as Label).Text;
 
             // error handling will need to be added
-            AlbumController sysmgr = new AlbumController();
-            Album datainfo = sysmgr.Album_Get(int.Parse(albumid));
-            if (datainfo==null )
+            MessageUserControl.TryRun(() =>
             {
-                // clear the controls
-                // throw an exception
-            }
-            else
-            {
-                EditAlbumID.Text = datainfo.AlbumID.ToString();
-                EditTitle.Text = datainfo.Title;
-                EditAlbumArtistList.SelectedValue = datainfo.ArtistID.ToString();
-                EditReleaseYear.Text = datainfo.ReleaseYear.ToString();
-                // ternary operator
-                EditReleaseLabel.Text =
-                    datainfo.ReleaseLabel == null ? "": datainfo.ReleaseLabel;
-            }
-
+                // place your processing code
+                AlbumController sysmgr = new AlbumController();
+                Album datainfo = sysmgr.Album_Get(int.Parse(albumid));
+                if (datainfo == null)
+                {
+                    // ClearControls();
+                    throw new Exception("Record no longer exists on file.");
+                }
+                else
+                {
+                    EditAlbumID.Text = datainfo.AlbumID.ToString();
+                    EditTitle.Text = datainfo.Title;
+                    EditAlbumArtistList.SelectedValue = datainfo.ArtistID.ToString();
+                    EditReleaseYear.Text = datainfo.ReleaseYear.ToString();
+                    // ternary operator
+                    EditReleaseLabel.Text =
+                        datainfo.ReleaseLabel == null ? "" : datainfo.ReleaseLabel;
+                }
+            },"Find Album", "Album found"); // strings on this line are success message
 
         }
     }
