@@ -11,6 +11,18 @@
     </blockquote>
     <div class="col-md-offset-1">
         <uc1:MessageUserControl runat="server" id="MessageUserControl" />
+        <br /><br />
+        <!-- Validation controls -->
+        <asp:RequiredFieldValidator ID="RequiredFieldEditTitle" runat="server" ErrorMessage="Title field is required" Display="None"
+            ForeColor="Firebrick" SetFocusOnError="true" ControlToValidate="EditTitle"></asp:RequiredFieldValidator>
+
+        <asp:RequiredFieldValidator ID="RequiredFieldReleaseYear" runat="server" ErrorMessage="ReleaseYear field is required" Display="None"
+            ForeColor="Firebrick" SetFocusOnError="true" ControlToValidate="EditReleaseYear"></asp:RequiredFieldValidator>
+        <asp:RangeValidator ID="RangeEditReleaseYear" runat="server" ErrorMessage="Year needs to be between to 1950 and today" Display="None"
+            ForeColor ="Firebrick" SetFocusOnError="true" ControlToValidate="EditReleaseYear" Type="Integer" MinimumValue="1950"></asp:RangeValidator>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+        <br />
+
         <asp:Label ID="label1" runat="server" Text="Select an artist:"></asp:Label>
         &nbsp;&nbsp;
         <asp:DropDownList ID="ArtistList" runat="server"></asp:DropDownList>
