@@ -81,5 +81,90 @@ namespace WebApp.SamplePages
             },"Find Album", "Album found"); // strings on this line are success message
 
         }
+
+        protected void ClearControls()
+        {
+            EditAlbumID.Text = "";
+            EditTitle.Text = "";
+            EditReleaseYear.Text = "";
+            EditReleaseLabel.Text = "";
+            EditAlbumArtistList.SelectedIndex = 0;
+        }
+
+        protected void Add_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                string albumtitle = EditTitle.Text;
+                int albumyear = int.Parse(EditReleaseYear.Text);
+                string albumlabel = EditReleaseLabel.Text == "" ? null : EditReleaseLabel.Text;
+                int albumartist = int.Parse(EditAlbumArtistList.SelectedValue);
+
+                Album theAlbum = new Album();
+                theAlbum.Title = albumtitle;
+                theAlbum.ArtistID = albumartist;
+                theAlbum.ReleaseYear = albumyear;
+                theAlbum.ReleaseLabel = albumlabel;
+
+                MessageUserControl.TryRun(() =>
+                {
+                    AlbumController sysmgr = new AlbumController();
+                    int albumid = sysmgr.Album_Add(theAlbum);
+                    EditAlbumID.Text = albumid.ToString();
+                    if (AlbumList.Rows.Count > 0)
+                    {
+                        AlbumList.DataBind();
+                    }
+                },"Successful", "Album added");
+
+            }
+        }
+
+        protected void Update_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                int editalbumid = 0;
+                string albumid = EditAlbumID.Text;
+                if (string.IsNullOrEmpty(albumid))
+                {
+                    MessageUserControl.ShowInfo("Attention","lookup the album before editing ");
+                }
+                else if (!int.TryParse(albumid, out editalbumid))
+                {
+                    MessageUserControl.ShowInfo("Attention","Current albumid is invalid. Preform lookup again");
+                }
+                else
+                {
+                    Album theAlbum = new Album();
+                    theAlbum.AlbumID = editalbumid; // include PKey
+                    theAlbum.Title = EditTitle.Text;
+                    theAlbum.ArtistID = int.Parse(EditAlbumArtistList.SelectedValue);
+                    theAlbum.ReleaseYear = int.Parse(EditReleaseYear.Text);
+                    theAlbum.ReleaseLabel = EditReleaseLabel.Text == "" ? null : EditReleaseLabel.Text;
+
+                    MessageUserControl.TryRun(() =>
+                    {
+                        AlbumController sysmgr = new AlbumController();
+                        int rowsaffected = sysmgr.Album_Update(theAlbum);
+                        if (rowsaffected > 0)
+                        {
+                            AlbumList.DataBind();
+                        }
+                        else
+                        {
+                            throw new Exception("Album was not found. Repeat lookup");
+                        }
+                    }, "Successful", "Album updated");
+                }
+
+                
+            }
+        }
+
+        protected void Remove_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
