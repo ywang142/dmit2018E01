@@ -153,7 +153,7 @@ namespace WebApp.SamplePages
                         }
                         else
                         {
-                            throw new Exception("Album was not found. Repeat lookup");
+                            throw new Exception("Album was not found. Repeat lookup and update again.");
                         }
                     }, "Successful", "Album updated");
                 }
@@ -164,7 +164,33 @@ namespace WebApp.SamplePages
 
         protected void Remove_Click(object sender, EventArgs e)
         {
-
+            int editalbumid = 0;
+            string albumid = EditAlbumID.Text;
+            if (string.IsNullOrEmpty(albumid))
+            {
+                MessageUserControl.ShowInfo("Attention", "lookup the album before editing ");
+            }
+            else if (!int.TryParse(albumid, out editalbumid))
+            {
+                MessageUserControl.ShowInfo("Attention", "Current albumid is invalid. Preform lookup again");
+            }
+            else
+            {
+                MessageUserControl.TryRun(() =>
+                {
+                    AlbumController sysmgr = new AlbumController();
+                    int rowsaffected = sysmgr.Album_Delete(editalbumid);
+                    if (rowsaffected > 0)
+                    {
+                        AlbumList.DataBind();
+                        EditAlbumID.Text = "";
+                    }
+                    else
+                    {
+                        throw new Exception("Album was not found. Repeat lookup and remove again.");
+                    }
+                }, "Successful", "Album Removed");
+            }
         }
     }
 }
