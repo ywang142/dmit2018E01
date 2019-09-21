@@ -35,7 +35,7 @@ namespace WebApp.SamplePages
             // info.Sort((x, y) => y.Name.CompareTo(x.Name));
             ArtistList.DataSource = info;
             ArtistList.DataTextField = nameof(Artist.Name);
-            ArtistList.DataValueField = nameof(Artist.ArtistID);
+            ArtistList.DataValueField = nameof(Artist.ArtistId);
             ArtistList.DataBind();
             // ArtistList.Items.Insert(0, "select ...");
 
@@ -70,9 +70,9 @@ namespace WebApp.SamplePages
                 }
                 else
                 {
-                    EditAlbumID.Text = datainfo.AlbumID.ToString();
+                    EditAlbumID.Text = datainfo.AlbumId.ToString();
                     EditTitle.Text = datainfo.Title;
-                    EditAlbumArtistList.SelectedValue = datainfo.ArtistID.ToString();
+                    EditAlbumArtistList.SelectedValue = datainfo.ArtistId.ToString();
                     EditReleaseYear.Text = datainfo.ReleaseYear.ToString();
                     // ternary operator
                     EditReleaseLabel.Text =
@@ -102,7 +102,7 @@ namespace WebApp.SamplePages
 
                 Album theAlbum = new Album();
                 theAlbum.Title = albumtitle;
-                theAlbum.ArtistID = albumartist;
+                theAlbum.ArtistId = albumartist;
                 theAlbum.ReleaseYear = albumyear;
                 theAlbum.ReleaseLabel = albumlabel;
 
@@ -137,9 +137,9 @@ namespace WebApp.SamplePages
                 else
                 {
                     Album theAlbum = new Album();
-                    theAlbum.AlbumID = editalbumid; // include PKey
+                    theAlbum.AlbumId = editalbumid; // include PKey
                     theAlbum.Title = EditTitle.Text;
-                    theAlbum.ArtistID = int.Parse(EditAlbumArtistList.SelectedValue);
+                    theAlbum.ArtistId = int.Parse(EditAlbumArtistList.SelectedValue);
                     theAlbum.ReleaseYear = int.Parse(EditReleaseYear.Text);
                     theAlbum.ReleaseLabel = EditReleaseLabel.Text == "" ? null : EditReleaseLabel.Text;
 

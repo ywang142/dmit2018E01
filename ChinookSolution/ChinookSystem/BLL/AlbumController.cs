@@ -40,7 +40,7 @@ namespace ChinookSystem.BLL
             {
                 // var: datatype is created on the execution time
                 var results = from x in context.Albums
-                    where x.ArtistID == artistid
+                    where x.ArtistId == artistid
                     select x;
                 return results.ToList();
             }
@@ -55,7 +55,7 @@ namespace ChinookSystem.BLL
             {
                 context.Albums.Add(item);   // staging
                 context.SaveChanges();      // committed
-                return item.AlbumID;        // return new id value
+                return item.AlbumId;        // return new id value
             }
         }
         [DataObjectMethod(DataObjectMethodType.Update, false)]
@@ -71,7 +71,7 @@ namespace ChinookSystem.BLL
         [DataObjectMethod(DataObjectMethodType.Delete,false)]
         public int Album_Delete (Album item)
         {
-            return Album_Delete(item.AlbumID);
+            return Album_Delete(item.AlbumId);
         }
         // [DataObjectMethod(DataObjectMethodType.Delete, false)] the current delete is taking in a single int
         public int Album_Delete(int albumid)
