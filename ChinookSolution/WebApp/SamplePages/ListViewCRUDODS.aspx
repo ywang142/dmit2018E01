@@ -45,15 +45,15 @@
                 ValidationGroup="EGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegExTitleTextBoxE" runat="server" ErrorMessage="Title is limited to 160 characters" Display="None"
                 ControlToValidate="TitleTextBoxE" ValidationGroup="EGroup" ValidationExpression="^.{1,160}$"></asp:RegularExpressionValidator>
-            <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxE" runat="server" ErrorMessage="Releaseyear is required" Display="None" ControlToValidate="ReleaseYearTextBoxE"
+<%--            <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxE" runat="server" ErrorMessage="Releaseyear is required" Display="None" ControlToValidate="ReleaseYearTextBoxE"
                 ValidationGroup="EGroup"></asp:RequiredFieldValidator>
             <asp:RangeValidator ID="RangeReleaseYearTextBoxE" runat="server" ErrorMessage="You must be between 1950 and today" Display="None"
                 ControlToValidate="ReleaseYearTextBoxE" ValidationGroup="EGroup" MinimumValue="1950" MaximumValue='<%# DateTime.Today.Year %>' Type="Integer"></asp:RangeValidator>
             <asp:RegularExpressionValidator ID="RegExReleaseYearTextBoxE" runat="server" ErrorMessage="Release label is limited to 50 characters" Display="None"
-                ControlToValidate="ReleaseYearTextBoxE" ValidationGroup="EGroup" ValidationExpression="^.{0,50}$"></asp:RegularExpressionValidator>
+                ControlToValidate="ReleaseYearTextBoxE" ValidationGroup="EGroup" ValidationExpression="^.{0,50}$"></asp:RegularExpressionValidator>--%>
             <tr style="background-color: #999999;">
                 <td>
-                    <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
+                    <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" ValidationGroup="EGroup" />
                     <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
                 </td>
                 <td>
@@ -86,16 +86,16 @@
                 ValidationGroup="IGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegExTitleTextBoxI" runat="server" ErrorMessage="Title is limited to 160 characters" Display="None"
                 ControlToValidate="TitleTextBoxI" ValidationGroup="IGroup" ValidationExpression="^.{1,160}$"></asp:RegularExpressionValidator>
-            <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxI" runat="server" ErrorMessage="Releaseyear is required" Display="None" ControlToValidate="ReleaseYearTextBoxI"
+<%--            <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxI" runat="server" ErrorMessage="Releaseyear is required" Display="None" ControlToValidate="ReleaseYearTextBoxI"
                 ValidationGroup="IGroup"></asp:RequiredFieldValidator>
             <asp:RangeValidator ID="RangeReleaseYearTextBoxI" runat="server" ErrorMessage="You must be between 1950 and today" Display="None"
                 ControlToValidate="ReleaseYearTextBoxI" ValidationGroup="IGroup" MinimumValue="1950" MaximumValue='<%# DateTime.Today.Year %>' Type="Integer"></asp:RangeValidator>
             <asp:RegularExpressionValidator ID="RegExReleaseYearTextBoxI" runat="server" ErrorMessage="Release label is limited to 50 characters" Display="None"
-                ControlToValidate="ReleaseYearTextBoxI" ValidationGroup="IGroup" ValidationExpression="^.{0,50}$"></asp:RegularExpressionValidator>
+                ControlToValidate="ReleaseYearTextBoxI" ValidationGroup="IGroup" ValidationExpression="^.{0,50}$"></asp:RegularExpressionValidator>--%>
             <tr style="background-color: #999999;">
             <tr style="">
                 <td>
-                    <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
+                    <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" ValidationGroup="IGroup" />
                     <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
                 </td>
                 <td>
