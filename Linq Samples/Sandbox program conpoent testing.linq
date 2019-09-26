@@ -9,8 +9,9 @@
 
 void Main()
 {
+string artistname = "Deep Purple";
 	var results = from x in Albums
-			where (x.Artist.Name.Contains ("Deep Purple")) 
+			where (x.Artist.Name.Contains (artistname)) 
 			orderby x.ReleaseYear, x.Title
 			select new
 			{
@@ -35,7 +36,3 @@ public class AlbumsOfArtist
 	public string RLabel {get;set;}
 
 }
-
-
-
-
