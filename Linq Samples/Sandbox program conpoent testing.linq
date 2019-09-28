@@ -1,4 +1,4 @@
-<Query Kind="Program">
+<Query Kind="Expression">
   <Connection>
     <ID>9453b47a-55fe-4987-9b12-8f50080106d1</ID>
     <Persist>true</Persist>
@@ -27,12 +27,41 @@ string artistname = "AC/DC";
 	results.Dump();
 }
 
-// Define other methods and classes here
-public class AlbumsOfArtist
-{
-	public string Title{get;set;}
-	public string ArtistName{get;set;}
-	public int Ryear {get;set;}
-	public string RLabel {get;set;}
 
-}
+
+
+
+
+// Define other methods and classes here
+//public class AlbumsOfArtist
+//{
+//	public string Title{get;set;}
+//	public string ArtistName{get;set;}
+//	public int Ryear {get;set;}
+//	public string RLabel {get;set;}
+//
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

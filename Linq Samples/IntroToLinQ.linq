@@ -75,11 +75,3 @@ select new
 	RYear = x.ReleaseYear,
 	RLabel = x.ReleaseLabel
 }
-
-
-
-
-
-
-
-
