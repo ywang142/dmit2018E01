@@ -86,7 +86,7 @@
                 ValidationGroup="IGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegExTitleTextBoxI" runat="server" ErrorMessage="Title is limited to 160 characters" Display="None"
                 ControlToValidate="TitleTextBoxI" ValidationGroup="IGroup" ValidationExpression="^.{1,160}$"></asp:RegularExpressionValidator>
-           <%-- <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxI" runat="server" ErrorMessage="Releaseyear is required" Display="None" ControlToValidate="ReleaseYearTextBoxI"
+            <%-- <asp:RequiredFieldValidator ID="RequiredReleaseYearTextBoxI" runat="server" ErrorMessage="Releaseyear is required" Display="None" ControlToValidate="ReleaseYearTextBoxI"
                 ValidationGroup="IGroup"></asp:RequiredFieldValidator>
             <asp:RangeValidator ID="RangeReleaseYearTextBoxI" runat="server" ErrorMessage="You must be between 1950 and today" Display="None"
                 ControlToValidate="ReleaseYearTextBoxI" ValidationGroup="IGroup" MinimumValue="1950" MaximumValue='<%# DateTime.Today.Year %>' Type="Integer"></asp:RangeValidator>--%>
