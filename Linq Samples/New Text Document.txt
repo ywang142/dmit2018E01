@@ -1,0 +1,10 @@
+var productList = from x in Orders
+where x.Count(ProductID) >= 0
+orderby x.Count(ProductID)
+select new 
+{
+	Product = x.Product.Description
+	TimesPurchased = Count(x.ProductID)
+};
+
+var flyerList = from from 
