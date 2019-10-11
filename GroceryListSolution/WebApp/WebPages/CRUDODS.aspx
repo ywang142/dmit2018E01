@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CRUDODS.aspx.cs" Inherits="WebApp.WebPages.CRUDODS" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <h1>Insert, Update and Delete</h1>
+    <h1>Insert, Update and Delete</h1>
     <br />
     <br />
     <asp:ListView ID="ListView1" runat="server" DataSourceID="ProductList" InsertItemPosition="LastItem">
@@ -17,15 +18,15 @@
                 <td>
                     <asp:Label Text='<%# Eval("Price") %>' runat="server" ID="PriceLabel" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Discount") %>' runat="server" ID="DiscountLabel" /></td>
+                    <asp:Label Text='<%# Eval("Discount") %>' runat="server"  ID="DiscountLabel" /></td>
                 <td>
                     <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" /></td>
                 <td>
-                      <asp:DropDownList ID="ArtistList" runat="server"
+                    <asp:DropDownList ID="CategoryList" runat="server"
                         DataSourceID="CategoriesList"
-                        DataTextField="Name"
-                        DataValueField="ArtistId"
-                        SelectedValue='<%# Eval("ArtistId") %>'
+                        DataTextField="Description"
+                        DataValueField="CategoryID"
+                        SelectedValue='<%# Eval("CategoryID") %>'
                         Enabled="false" Width="300px">
                     </asp:DropDownList>
                 <td>
@@ -49,7 +50,13 @@
                 <td>
                     <asp:TextBox Text='<%# Bind("UnitSize") %>' runat="server" ID="UnitSizeTextBox" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("CategoryID") %>' runat="server" ID="CategoryIDTextBox" /></td>
+                    <asp:DropDownList ID="CategoryList" runat="server"
+                        DataSourceID="CategoriesList"
+                        DataTextField="Description"
+                        DataValueField="CategoryID"
+                        SelectedValue='<%# Bind("CategoryID") %>'
+                        Enabled="true" Width="300px">
+                    </asp:DropDownList>
                 <td>
                     <asp:CheckBox Checked='<%# Bind("Taxable") %>' runat="server" ID="TaxableCheckBox" /></td>
             </tr>
@@ -78,7 +85,13 @@
                 <td>
                     <asp:TextBox Text='<%# Bind("UnitSize") %>' runat="server" ID="UnitSizeTextBox" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("CategoryID") %>' runat="server" ID="CategoryIDTextBox" /></td>
+                    <asp:DropDownList ID="CategoryList" runat="server"
+                        DataSourceID="CategoriesList"
+                        DataTextField="Description"
+                        DataValueField="CategoryID"
+                        SelectedValue='<%# Bind("CategoryID") %>'
+                        Enabled="true" Width="300px">
+                    </asp:DropDownList></td>
                 <td>
                     <asp:CheckBox Checked='<%# Bind("Taxable") %>' runat="server" ID="TaxableCheckBox" /></td>
 
@@ -101,7 +114,13 @@
                 <td>
                     <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("CategoryID") %>' runat="server" ID="CategoryIDLabel" /></td>
+                    <asp:DropDownList ID="CategoryList" runat="server"
+                        DataSourceID="CategoriesList"
+                        DataTextField="Description"
+                        DataValueField="CategoryID"
+                        SelectedValue='<%# Eval("CategoryID") %>'
+                        Enabled="false" Width="300px">
+                    </asp:DropDownList></td>
                 <td>
                     <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" /></td>
             </tr>
@@ -118,7 +137,7 @@
                                 <th runat="server">Price</th>
                                 <th runat="server">Discount</th>
                                 <th runat="server">UnitSize</th>
-                                <th runat="server">CategoryID</th>
+                                <th runat="server">Category</th>
                                 <th runat="server">Taxable</th>
                             </tr>
                             <tr runat="server" id="itemPlaceholder"></tr>
@@ -153,7 +172,13 @@
                 <td>
                     <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("CategoryID") %>' runat="server" ID="CategoryIDLabel" /></td>
+                    <asp:DropDownList ID="CategoryList" runat="server"
+                        DataSourceID="CategoriesList"
+                        DataTextField="Description"
+                        DataValueField="CategoryID"
+                        SelectedValue='<%# Eval("CategoryID") %>'
+                        Enabled="false" Width="300px">
+                    </asp:DropDownList></td>
                 <td>
                     <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" /></td>
             </tr>
@@ -162,6 +187,6 @@
 
 
 
-     <asp:ObjectDataSource ID="CategoriesList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Category_List" TypeName="GroceryListSystem.BLL.CategoryController"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="CategoriesList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Category_List" TypeName="GroceryListSystem.BLL.CategoryController"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="ProductList" runat="server" DataObjectTypeName="GroceryList.Data.Entities.Product" DeleteMethod="Product_Delete" InsertMethod="Product_Add" OldValuesParameterFormatString="original_{0}" SelectMethod="Product_List" TypeName="GroceryListSystem.BLL.ProductController" UpdateMethod="Product_Update"></asp:ObjectDataSource>
 </asp:Content>

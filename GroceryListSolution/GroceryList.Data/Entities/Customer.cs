@@ -14,7 +14,7 @@ namespace GroceryList.Data.Entities
             Orders = new HashSet<Order>();
         }
 
-        
+
         public int CustomerID { get; set; }
 
         [Required]

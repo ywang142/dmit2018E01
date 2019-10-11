@@ -20,7 +20,7 @@ namespace GroceryList.Data.Entities
         [StringLength(100)]
         public string Description { get; set; }
 
-        [Column(TypeName = "money")]
+        [Column(TypeName = "money"), DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Price { get; set; }
 
         [Column(TypeName = "money")]

@@ -15,7 +15,7 @@
             <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price"></asp:BoundField>
             <asp:BoundField DataField="Discount" HeaderText="Discount" SortExpression="Discount"></asp:BoundField>
             <asp:BoundField DataField="UnitSize" HeaderText="UnitSize" SortExpression="UnitSize"></asp:BoundField>
-            <asp:CheckBoxField DataField="Taxable" HeaderText="Taxable" SortExpression="Taxable" ></asp:CheckBoxField>
+            <asp:CheckBoxField DataField="Taxable" HeaderText="Taxable" SortExpression="Taxable"></asp:CheckBoxField>
         </Columns>
         <EditRowStyle BackColor="#2461BF"></EditRowStyle>
 

@@ -79,14 +79,14 @@ namespace GroceryListSystem.BLL
         {
             using (var context = new GroceryListContext())
             {
-                var product = context.Products.Find(productid);
-                if (product == null)
+                var existing = context.Products.Find(productid);
+                if (existing == null)
                 {
                     throw new Exception("Product not on file. Delete unnecessary.");
                 }
                 else
                 {
-                    context.Products.Remove(product);
+                    context.Products.Remove(existing);
                     return context.SaveChanges();
                 }
 
