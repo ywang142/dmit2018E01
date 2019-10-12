@@ -16,8 +16,8 @@ namespace GroceryList.Data.Entities
 
         public int ProductID { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage ="Product description is required")]
+        [StringLength(100, ErrorMessage ="Product description is limited to 100 characters")]
         public string Description { get; set; }
 
         [Column(TypeName = "money"), DisplayFormat(DataFormatString = "{0:C}")]
@@ -26,8 +26,8 @@ namespace GroceryList.Data.Entities
         [Column(TypeName = "money")]
         public decimal Discount { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [Required(ErrorMessage ="Unit size is required")]
+        [StringLength(20, ErrorMessage ="Unit size is limited to 20 characters")]
         public string UnitSize { get; set; }
 
         public int CategoryID { get; set; }

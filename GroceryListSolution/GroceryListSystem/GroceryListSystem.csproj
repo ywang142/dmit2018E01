@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BusinessRuleException.cs" />
     <Compile Include="BLL\CategoryController.cs" />
     <Compile Include="BLL\ProductController.cs" />
     <Compile Include="DAL\GroceryListContext.cs" />

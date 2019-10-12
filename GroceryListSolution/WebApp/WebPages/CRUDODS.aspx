@@ -1,64 +1,84 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CRUDODS.aspx.cs" Inherits="WebApp.WebPages.CRUDODS" %>
 
+<%@ Register Src="~/UserControl/MessageUserControl.ascx" TagPrefix="uc1" TagName="MessageUserControl" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Insert, Update and Delete</h1>
     <br />
+    <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
     <br />
-    <asp:ListView ID="ListView1" runat="server" DataSourceID="ProductList" InsertItemPosition="LastItem">
+    <br />
+    <asp:ValidationSummary ID="ValidationSummaryInsert" runat="server" HeaderText="Correct the following concerns on the insert record" ValidationGroup="IGroup" />
+    <asp:ValidationSummary ID="ValidationSummaryEdit" runat="server" HeaderText="Correct the following concerns on the Edit record" ValidationGroup="EGroup" />
+    <br />
+    <asp:ListView ID="ListView1" runat="server" DataSourceID="ProductList" InsertItemPosition="LastItem" DataKeyNames="ProductID">
         <AlternatingItemTemplate>
             <tr style="background-color: #FFFFFF; color: #284775;">
                 <td>
-                    <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton" />
+                    <asp:Button runat="server" CommandName="Delete" Text="Delete" ID="DeleteButton"
+                        OnClientClick="return confirm('Are you sure you wish to delete?')" />
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("ProductID") %>' runat="server" ID="ProductIDLabel" /></td>
+                    <asp:Label Text='<%# Eval("ProductID") %>' runat="server" ID="ProductIDLabel" Width="30px" Enabled="false" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" /></td>
+                    <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" Width="200px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Price") %>' runat="server" ID="PriceLabel" /></td>
+                    <asp:Label Text='<%# Eval("Price", "{0:0.00 }") %>' runat="server" ID="PriceLabel" Width="100px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Discount") %>' runat="server"  ID="DiscountLabel" /></td>
+                    <asp:Label Text='<%# Eval("Discount", "{0:0.00 }") %>' runat="server" ID="DiscountLabel" Width="100px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" /></td>
+                    <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" Width="100px" /></td>
                 <td>
                     <asp:DropDownList ID="CategoryList" runat="server"
                         DataSourceID="CategoriesList"
                         DataTextField="Description"
                         DataValueField="CategoryID"
                         SelectedValue='<%# Eval("CategoryID") %>'
-                        Enabled="false" Width="300px">
+                        Enabled="false" Width="150px">
                     </asp:DropDownList>
                 <td>
-                    <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" /></td>
+                    <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" Width="30px" /></td>
             </tr>
         </AlternatingItemTemplate>
         <EditItemTemplate>
+            <asp:RequiredFieldValidator ID="RequiredDescriptionTextBoxE" runat="server" ErrorMessage="Description is required" Display="None" ControlToValidate="DescriptionTextBoxE"
+                ValidationGroup="EGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegExDescriptionTextBoxE" runat="server" ErrorMessage="Description is limited to 100 characters" Display="None"
+                ControlToValidate="DescriptionTextBoxE" ValidationGroup="EGroup" ValidationExpression="^.{1,100}$"></asp:RegularExpressionValidator>
+            <asp:RequiredFieldValidator ID="RequiredUnitSizeTextBoxE" runat="server" ErrorMessage="Unit size is required" Display="None" ControlToValidate="UnitSizeTextBoxE"
+                ValidationGroup="EGroup"></asp:RequiredFieldValidator>
+            
+            <asp:CompareValidator ID="CompareDiscountGreaterThanZeroE" runat="server" ErrorMessage="Discount must be greater than 0"
+                 ValidationGroup="EGroup" ControlToValidate="DiscountTextBoxE" ValueToCompare="0" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
+            <asp:CompareValidator ID="ComparePriceDiscountE" runat="server"
+                ErrorMessage="Discount can not be greater than item price!" ValidationGroup="EGroup"
+                ControlToValidate="PriceTextBoxE" ControlToCompare="DiscountTextBoxE" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
             <tr style="background-color: #999999;">
                 <td>
-                    <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" />
+                    <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" ValidationGroup="EGroup" />
                     <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" />
                 </td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("ProductID") %>' runat="server" ID="ProductIDTextBox" Enabled="false" /></td>
+                    <asp:TextBox Text='<%# Bind("ProductID") %>' runat="server" ID="ProductIDTextBox" Enabled="false" Width="30px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBoxE" Width="200px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Price") %>' runat="server" ID="PriceTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("Price", "{0:0.00 }") %>' runat="server" ID="PriceTextBoxE" Width="100px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Discount") %>' runat="server" ID="DiscountTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("Discount", "{0:0.00 }") %>' runat="server" ID="DiscountTextBoxE" Width="100px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("UnitSize") %>' runat="server" ID="UnitSizeTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("UnitSize") %>' runat="server" ID="UnitSizeTextBoxE" Width="100px" /></td>
                 <td>
                     <asp:DropDownList ID="CategoryList" runat="server"
                         DataSourceID="CategoriesList"
                         DataTextField="Description"
                         DataValueField="CategoryID"
                         SelectedValue='<%# Bind("CategoryID") %>'
-                        Enabled="true" Width="300px">
+                        Enabled="true" Width="150px">
                     </asp:DropDownList>
                 <td>
-                    <asp:CheckBox Checked='<%# Bind("Taxable") %>' runat="server" ID="TaxableCheckBox" /></td>
+                    <asp:CheckBox Checked='<%# Bind("Taxable") %>' runat="server" ID="TaxableCheckBox" Width="30px" /></td>
             </tr>
         </EditItemTemplate>
         <EmptyDataTemplate>
@@ -69,31 +89,42 @@
             </table>
         </EmptyDataTemplate>
         <InsertItemTemplate>
+            <asp:RequiredFieldValidator ID="RequiredDescriptionTextBoxI" runat="server" ErrorMessage="Description is required" Display="None" ControlToValidate="DescriptionTextBoxI"
+                ValidationGroup="IGroup"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegExDescriptionTextBoxI" runat="server" ErrorMessage="Description is limited to 100 characters" Display="None"
+                ControlToValidate="DescriptionTextBoxI" ValidationGroup="IGroup" ValidationExpression="^.{1,100}$"></asp:RegularExpressionValidator>
+            <asp:RequiredFieldValidator ID="RequiredUnitSizeTextBoxI" runat="server" ErrorMessage="Unit size is required" Display="None" ControlToValidate="UnitSizeTextBoxI"
+                ValidationGroup="IGroup"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareDiscountGreaterThanZeroI" runat="server" ErrorMessage="Discount must be greater than 0"
+                 ValidationGroup="IGroup" ControlToValidate="DiscountTextBoxI" ValueToCompare="0" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
+            <asp:CompareValidator ID="ComparePriceDiscountI" runat="server"
+                ErrorMessage="Discount can not be greater than item price!" ValidationGroup="IGroup"
+                ControlToValidate="PriceTextBoxI" ControlToCompare="DiscountTextBoxI" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
             <tr style="">
                 <td>
-                    <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" />
+                    <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" ValidationGroup="IGroup" />
                     <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" />
                 </td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("ProductID") %>' runat="server" ID="ProductIDTextBox" Enabled="false" /></td>
+                    <asp:TextBox Text='<%# Bind("ProductID") %>' runat="server" ID="ProductIDTextBoxI" Enabled="false" Width="30px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("Description") %>' runat="server" ID="DescriptionTextBoxI" Width="200px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Price") %>' runat="server" ID="PriceTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("Price", "{0:0.00 }") %>' runat="server" ID="PriceTextBoxI" Width="100px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("Discount") %>' runat="server" ID="DiscountTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("Discount", "{0:0.00 }") %>' runat="server" ID="DiscountTextBoxI" Width="100px" /></td>
                 <td>
-                    <asp:TextBox Text='<%# Bind("UnitSize") %>' runat="server" ID="UnitSizeTextBox" /></td>
+                    <asp:TextBox Text='<%# Bind("UnitSize") %>' runat="server" ID="UnitSizeTextBoxI" Width="100px" /></td>
                 <td>
                     <asp:DropDownList ID="CategoryList" runat="server"
                         DataSourceID="CategoriesList"
                         DataTextField="Description"
                         DataValueField="CategoryID"
                         SelectedValue='<%# Bind("CategoryID") %>'
-                        Enabled="true" Width="300px">
+                        Enabled="true" Width="150px">
                     </asp:DropDownList></td>
                 <td>
-                    <asp:CheckBox Checked='<%# Bind("Taxable") %>' runat="server" ID="TaxableCheckBox" /></td>
+                    <asp:CheckBox Checked='<%# Bind("Taxable") %>' runat="server" ID="TaxableCheckBox" Width="30px" /></td>
 
             </tr>
         </InsertItemTemplate>
@@ -104,25 +135,25 @@
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("ProductID") %>' runat="server" ID="ProductIDLabel" /></td>
+                    <asp:Label Text='<%# Eval("ProductID") %>' runat="server" ID="ProductIDLabel" Width="30px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" /></td>
+                    <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" Width="200px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Price") %>' runat="server" ID="PriceLabel" /></td>
+                    <asp:Label Text='<%# Eval("Price", "{0:0.00 }") %>' runat="server" ID="PriceLabel" Width="100px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Discount") %>' runat="server" ID="DiscountLabel" /></td>
+                    <asp:Label Text='<%# Eval("Discount", "{0:0.00 }") %>' runat="server" ID="DiscountLabel" Width="100px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" /></td>
+                    <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" Width="100px" /></td>
                 <td>
                     <asp:DropDownList ID="CategoryList" runat="server"
                         DataSourceID="CategoriesList"
                         DataTextField="Description"
                         DataValueField="CategoryID"
                         SelectedValue='<%# Eval("CategoryID") %>'
-                        Enabled="false" Width="300px">
+                        Enabled="false" Width="150px">
                     </asp:DropDownList></td>
                 <td>
-                    <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" /></td>
+                    <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" Width="30px" /></td>
             </tr>
         </ItemTemplate>
         <LayoutTemplate>
@@ -162,31 +193,34 @@
                     <asp:Button runat="server" CommandName="Edit" Text="Edit" ID="EditButton" />
                 </td>
                 <td>
-                    <asp:Label Text='<%# Eval("ProductID") %>' runat="server" ID="ProductIDLabel" /></td>
+                    <asp:Label Text='<%# Eval("ProductID") %>' runat="server" ID="ProductIDLabel" Width="30px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" /></td>
+                    <asp:Label Text='<%# Eval("Description") %>' runat="server" ID="DescriptionLabel" Width="200px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Price") %>' runat="server" ID="PriceLabel" /></td>
+                    <asp:Label Text='<%# Eval("Price", "{0:0.00 }") %>' runat="server" ID="PriceLabel" Width="100px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("Discount") %>' runat="server" ID="DiscountLabel" /></td>
+                    <asp:Label Text='<%# Eval("Discount", "{0:0.00 }") %>' runat="server" ID="DiscountLabel" Width="100px" /></td>
                 <td>
-                    <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" /></td>
+                    <asp:Label Text='<%# Eval("UnitSize") %>' runat="server" ID="UnitSizeLabel" Width="100px" /></td>
                 <td>
                     <asp:DropDownList ID="CategoryList" runat="server"
                         DataSourceID="CategoriesList"
                         DataTextField="Description"
                         DataValueField="CategoryID"
                         SelectedValue='<%# Eval("CategoryID") %>'
-                        Enabled="false" Width="300px">
+                        Enabled="false" Width="150px">
                     </asp:DropDownList></td>
                 <td>
-                    <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" /></td>
+                    <asp:CheckBox Checked='<%# Eval("Taxable") %>' runat="server" ID="TaxableCheckBox" Enabled="false" Width="30px" /></td>
             </tr>
         </SelectedItemTemplate>
     </asp:ListView>
 
 
 
-    <asp:ObjectDataSource ID="CategoriesList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Category_List" TypeName="GroceryListSystem.BLL.CategoryController"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="CategoriesList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Category_List" TypeName="GroceryListSystem.BLL.CategoryController" OnDeleted="DeleteCheckForException"
+        OnInserted="InsertCheckForException"
+        OnUpdated="UpdateCheckForException"
+        OnSelected="CheckForException"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="ProductList" runat="server" DataObjectTypeName="GroceryList.Data.Entities.Product" DeleteMethod="Product_Delete" InsertMethod="Product_Add" OldValuesParameterFormatString="original_{0}" SelectMethod="Product_List" TypeName="GroceryListSystem.BLL.ProductController" UpdateMethod="Product_Update"></asp:ObjectDataSource>
 </asp:Content>

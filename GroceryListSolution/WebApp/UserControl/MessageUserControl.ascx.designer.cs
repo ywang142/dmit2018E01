@@ -7,63 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.WebPages {
+namespace DMIT2018Common.UserControls {
     
     
-    public partial class CRUDODS {
+    public partial class MessageUserControl {
         
         /// <summary>
-        /// MessageUserControl control.
+        /// MessagePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DMIT2018Common.UserControls.MessageUserControl MessageUserControl;
+        protected global::System.Web.UI.WebControls.Panel MessagePanel;
         
         /// <summary>
-        /// ValidationSummaryInsert control.
+        /// MessageTitleIcon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummaryInsert;
+        protected global::System.Web.UI.WebControls.Label MessageTitleIcon;
         
         /// <summary>
-        /// ValidationSummaryEdit control.
+        /// MessageTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummaryEdit;
+        protected global::System.Web.UI.WebControls.Label MessageTitle;
         
         /// <summary>
-        /// ListView1 control.
+        /// MessageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.Label MessageLabel;
         
         /// <summary>
-        /// CategoriesList control.
+        /// MessageDetailsRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource CategoriesList;
-        
-        /// <summary>
-        /// ProductList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ProductList;
+        protected global::System.Web.UI.WebControls.Repeater MessageDetailsRepeater;
     }
 }
