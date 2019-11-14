@@ -1,0 +1,1 @@
+view -- Object Explorer Details ---- Tables ---- CTRL LClick ---- Delete
