@@ -7,16 +7,21 @@
 </Query>
 
 from x in Pickers
+orderby x.LastName + ',' + x.FirstName
 select new
 {
 	picker = x.LastName + ',' + x.FirstName, 
 	pickdates = (
-	from y in Orders
-	where y.Store.StoreID == x.StoreID && y.PickedDate != null
+	from y in x.Store.Orders
+	group y by y.OrderID into z
+	from q in z
+	where q.PickerID == x.PickerID && q.PickedDate != null &&
+	q.PickedDate.Value.Year == 2017 && q.PickedDate.Value.Month == 12 && q.PickedDate.Value.Day >= 18
 	select new
 	{
-		ID = y.OrderID,	
-		Date = y.PickedDate
-	
+		ID = z.Key,
+		Date = q.PickedDate
 	})
 }
+
+// where clause

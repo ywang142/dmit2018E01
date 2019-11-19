@@ -16,10 +16,13 @@ select new
 	join z in OrderLists
 	on y.OrderID equals z.OrderID
 	group z by z.Product into q
-	orderby q.Count(), q.Key.Description
+	orderby q.Count() descending, q.Key.Description
 	select new
 	{
 		description = q.Key.Description,
 		timesbought = q.Count()
 	}).Distinct()
 }
+
+
+// order by

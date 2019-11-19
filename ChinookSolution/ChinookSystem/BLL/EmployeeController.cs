@@ -15,6 +15,7 @@ using DMIT2018Common.UserControls;
 
 namespace ChinookSystem.BLL
 {
+    [DataObject]
     public class EmployeeController
     {
         public List<string> Employees_GetTitles()
@@ -27,5 +28,23 @@ namespace ChinookSystem.BLL
             }
 
         }
+
+        [DataObjectMethod(DataObjectMethodType.Select,false)]
+        public List<SelectionList> Employee_ListNames()
+        {
+            using(var context = new ChinookContext())
+            {
+                var employeelist = from x in context.Employees
+                                   orderby x.LastName, x.FirstName
+                                   select new SelectionList
+                                   {
+                                       DisplayText = x.LastName + ", " + x.FirstName,
+                                       IDValueField = x.EmployeeId
+                                   };
+                return employeelist.ToList();
+            }
+        }
+
+
     }
 }
