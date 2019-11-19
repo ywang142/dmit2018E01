@@ -16,14 +16,15 @@ select new
 	where x.CategoryID == y.Product.CategoryID && y.OrderID == 33
 	group y by y.Product into z
 	from q in z
+	orderby z.Key.Description
 	select new
 	{
 		Product = z.Key.Description,
 		Price = z.Key.Price,
 		Discount = z.Key.Discount,
 		Subtotal = (decimal)q.QtyPicked * z.Key.Price * (1- z.Key.Discount),
-		GST = Subtot
-		
+		Tax = (decimal)q.QtyPicked * z.Key.Price * (1- z.Key.Discount) * (decimal)0.05,
+		Total = (decimal)q.QtyPicked * z.Key.Price * (1- z.Key.Discount) * (decimal)1.05
 	}
 	)	
 }
