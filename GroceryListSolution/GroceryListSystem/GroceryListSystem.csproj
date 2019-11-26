@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BLL\BusinessRuleException.cs" />
     <Compile Include="BLL\CategoryController.cs" />
+    <Compile Include="BLL\OrderController.cs" />
     <Compile Include="BLL\ProductController.cs" />
     <Compile Include="DAL\GroceryListContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

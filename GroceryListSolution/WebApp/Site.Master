@@ -80,6 +80,7 @@
                             <asp:MenuItem Text="Exercise" Value="Exercise">
                                 <asp:MenuItem Text="Query" NavigateUrl="~/WebPages/QueryODS.aspx"></asp:MenuItem>
                                 <asp:MenuItem Text="Insert, Update and Delete" NavigateUrl="~/WebPages/CRUDODS.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="OLTP" NavigateUrl="~/WebPages/OLTPPlanning.aspx"></asp:MenuItem>
                             </asp:MenuItem>
                         </Items>
 

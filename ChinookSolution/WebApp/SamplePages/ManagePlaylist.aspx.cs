@@ -19,40 +19,40 @@ namespace Jan2018DemoWebsite.SamplePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TracksSelectionList.DataSource = null;
-            if (Request.IsAuthenticated)
-            {
-                if (User.IsInRole("Customers")|| User.IsInRole("Customer Service"))
-                {
-                    var username = User.Identity.Name;
-                    SecurityController securitymgr = new SecurityController();
-                    int? customerid = securitymgr.GetCurrentUserCustomerId(username);
-                    if (customerid.HasValue)
-                    {
-                        MessageUserControl.TryRun(() =>
-                        {
-                            CustomerController sysmgr = new CustomerController();
-                            Customer info = sysmgr.Customer_Get(customerid.Value);
-                            CustomerName.Text = " for " +info.FullName;
-                        });
-                    }
-                    else
-                    {
-                        MessageUserControl.ShowInfo("UnRegistered User", "This user is not a registered customer");
-                        CustomerName.Text = "Unregistered User";
-                    }
-                }
-                else
-                {
-                    //redirect to a page that states no authorization fot the request action
-                    Response.Redirect("~/Security/AccessDenied.aspx");
-                }
-            }
-            else
-            {
-                //redirect to login page
-                Response.Redirect("~/Account/Login.aspx");
-            }
+            //TracksSelectionList.DataSource = null;
+            //if (Request.IsAuthenticated)
+            //{
+            //    if (User.IsInRole("Customers")|| User.IsInRole("Customer Service"))
+            //    {
+            //        var username = User.Identity.Name;
+            //        SecurityController securitymgr = new SecurityController();
+            //        int? customerid = securitymgr.GetCurrentUserCustomerId(username);
+            //        if (customerid.HasValue)
+            //        {
+            //            MessageUserControl.TryRun(() =>
+            //            {
+            //                CustomerController sysmgr = new CustomerController();
+            //                Customer info = sysmgr.Customer_Get(customerid.Value);
+            //                CustomerName.Text = " for " +info.FullName;
+            //            });
+            //        }
+            //        else
+            //        {
+            //            MessageUserControl.ShowInfo("UnRegistered User", "This user is not a registered customer");
+            //            CustomerName.Text = "Unregistered User";
+            //        }
+            //    }
+            //    else
+            //    {
+            //        redirect to a page that states no authorization fot the request action
+            //        Response.Redirect("~/Security/AccessDenied.aspx");
+            //    }
+            //}
+            //else
+            //{
+            //    redirect to login page
+            //    Response.Redirect("~/Account/Login.aspx");
+            //}
         }
 
         protected void CheckForException(object sender, ObjectDataSourceStatusEventArgs e)

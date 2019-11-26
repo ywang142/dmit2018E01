@@ -190,6 +190,7 @@
     <Content Include="Account\Web.config" />
     <Content Include="UserControl\MessageUserControl.ascx" />
     <Content Include="WebPages\CRUDODS.aspx" />
+    <Content Include="WebPages\OLTPPlanning.aspx" />
     <Content Include="WebPages\QueryODS.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -398,6 +399,13 @@
     </Compile>
     <Compile Include="WebPages\CRUDODS.aspx.designer.cs">
       <DependentUpon>CRUDODS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebPages\OLTPPlanning.aspx.cs">
+      <DependentUpon>OLTPPlanning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebPages\OLTPPlanning.aspx.designer.cs">
+      <DependentUpon>OLTPPlanning.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPages\QueryODS.aspx.cs">
       <DependentUpon>QueryODS.aspx</DependentUpon>

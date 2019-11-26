@@ -48,11 +48,17 @@
                 ControlToValidate="DescriptionTextBoxE" ValidationGroup="EGroup" ValidationExpression="^.{1,100}$"></asp:RegularExpressionValidator>
             <asp:RequiredFieldValidator ID="RequiredUnitSizeTextBoxE" runat="server" ErrorMessage="Unit size is required" Display="None" ControlToValidate="UnitSizeTextBoxE"
                 ValidationGroup="EGroup"></asp:RequiredFieldValidator>
-            
-            <asp:CompareValidator ID="CompareDiscountGreaterThanZeroE" runat="server" ErrorMessage="Discount must be greater than 0"
+            <asp:RequiredFieldValidator ID="RequiredPriceTextBoxE" runat="server" ErrorMessage="Price is required" Display="None" ControlToValidate="PriceTextBoxE"
+                ValidationGroup="EGroup"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredDiscountTextBoxE" runat="server" ErrorMessage="Discount is required" Display="None" ControlToValidate="DiscountTextBoxE"
+                ValidationGroup="EGroup"></asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareDiscountGreaterThanZeroE" runat="server" ErrorMessage="Discount must be greater than 0" Type="Double"
                  ValidationGroup="EGroup" ControlToValidate="DiscountTextBoxE" ValueToCompare="0" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
+
+<%--            <asp:CompareValidator ID="ComparePriceGreaterThanZero" runat="server" ErrorMessage="Price must be greater than 0" Type="Double"
+                 ValidationGroup="EGroup" ControlToValidate="PriceTextBoxE" ValueToCompare="0" Operator="GreaterThan" Display="None"></asp:CompareValidator>--%>
             <asp:CompareValidator ID="ComparePriceDiscountE" runat="server"
-                ErrorMessage="Discount can not be greater than item price!" ValidationGroup="EGroup"
+                ErrorMessage="Discount can not be greater than item price!" ValidationGroup="EGroup" Type="Double"
                 ControlToValidate="PriceTextBoxE" ControlToCompare="DiscountTextBoxE" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
             <tr style="background-color: #999999;">
                 <td>
@@ -93,13 +99,20 @@
                 ValidationGroup="IGroup"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegExDescriptionTextBoxI" runat="server" ErrorMessage="Description is limited to 100 characters" Display="None"
                 ControlToValidate="DescriptionTextBoxI" ValidationGroup="IGroup" ValidationExpression="^.{1,100}$"></asp:RegularExpressionValidator>
+            <asp:RequiredFieldValidator ID="RequiredPriceTextBoxI" runat="server" ErrorMessage="Price is required" Display="None" ControlToValidate="PriceTextBoxI"
+                ValidationGroup="IGroup"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="RequiredDiscountTextBoxI" runat="server" ErrorMessage="Discount is required" Display="None" ControlToValidate="DiscountTextBoxI"
+                ValidationGroup="IGroup"></asp:RequiredFieldValidator>
             <asp:RequiredFieldValidator ID="RequiredUnitSizeTextBoxI" runat="server" ErrorMessage="Unit size is required" Display="None" ControlToValidate="UnitSizeTextBoxI"
                 ValidationGroup="IGroup"></asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="CompareDiscountGreaterThanZeroI" runat="server" ErrorMessage="Discount must be greater than 0"
+            <asp:CompareValidator ID="CompareDiscountGreaterThanZeroI" runat="server" ErrorMessage="Discount must be greater or equal to 0" Type="Double"
                  ValidationGroup="IGroup" ControlToValidate="DiscountTextBoxI" ValueToCompare="0" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
+<%--            <asp:CompareValidator ID="ComparePriceGreaterThanZeroI" runat="server" ErrorMessage="Price must be greater than 0"
+                 ValidationGroup="IGroup" ControlToValidate="PriceTextBoxI" ValueToCompare="0" Operator="GreaterThan" Display="None"></asp:CompareValidator>--%>
             <asp:CompareValidator ID="ComparePriceDiscountI" runat="server"
-                ErrorMessage="Discount can not be greater than item price!" ValidationGroup="IGroup"
+                ErrorMessage="Discount can not be greater than price" ValidationGroup="IGroup" Type="Double"
                 ControlToValidate="PriceTextBoxI" ControlToCompare="DiscountTextBoxI" Operator="GreaterThanEqual" Display="None"></asp:CompareValidator>
+
             <tr style="">
                 <td>
                     <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" ValidationGroup="IGroup" />
