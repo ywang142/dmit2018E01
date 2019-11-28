@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div>
-        <h1>Manage Playlists (UI/UX TRX Sample)<asp:Label ID="CustomerName" runat="server"></asp:Label></h1>
+        <h1>OTLP Exercise<asp:Label ID="Label10" runat="server"></asp:Label></h1>
     </div>
     <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
 
@@ -15,19 +15,19 @@
                 <asp:Label ID="Label1" runat="server" Text="OrderNumber"></asp:Label>
             </div>
             <div class="col-sm-1">
-                <asp:DropDownList ID="DropDownList1" runat="server" Width="50px" DataSourceID="OrderDLL" DataTextField="OrderID" DataValueField="OrderID"></asp:DropDownList>
-               <br />
+                <asp:DropDownList ID="CustomerID" runat="server" Width="50px" DataSourceID="OrderDLL" DataTextField="OrderID" DataValueField="CustomerID"></asp:DropDownList>
+                <br />
             </div>
             <div class="col-sm-1">
-                <asp:Button ID="ArtistFetch" runat="server" Text="Fetch" />
+                <asp:Button ID="ArtistFetch" runat="server" Text="Fetch" OnClick="ArtistFetch_Click" />
             </div>
         </div>
         <div class="row-sm-5">
             <div class="col-sm-2">
-                <asp:Label ID="Label2" runat="server" Text="Customer:Doe, Jane"></asp:Label>
+                <asp:Label ID="CustomerName" runat="server" Text="Customer:"></asp:Label>
             </div>
             <div class="col-sm-3">
-                <asp:Label ID="Label3" runat="server" Text="Contact: 123:123:123"></asp:Label>
+                <asp:Label ID="Contact" runat="server" Text="Contact: "></asp:Label>
             </div>
 
         </div>
@@ -36,14 +36,21 @@
                 <asp:Label ID="Label4" runat="server" Text="Picker"></asp:Label>
             </div>
             <div class="col-sm-2">
-                <asp:DropDownList ID="DropDownList2" runat="server" Width="150px"></asp:DropDownList>
+                <asp:DropDownList ID="DropDownList2" runat="server" Width="150px" DataSourceID="PickerDLL" DataTextField="FullName" DataValueField="PickerID"></asp:DropDownList>
             </div>
         </div>
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView><br />
 
-        <asp:Button ID="Button1" runat="server" Text="Save" />
-     </div>
+    </div>
+    <div>
+    
+    </div>
+    <asp:Button CssClass="btn-primary" ID="Button1" runat="server" Text="Save" />
+
     <asp:ObjectDataSource ID="OrderDLL" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Order_List" TypeName="GroceryListSystem.BLL.OrderController"></asp:ObjectDataSource>
-            
-
+    <asp:ObjectDataSource ID="PickerDLL" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Picker_List" TypeName="GroceryListSystem.BLL.PickerController"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="OrderListODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="OrderLists_OrderPickList" TypeName="GroceryListSystem.BLL.PickListController">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="CustomerID" PropertyName="SelectedIndex" Name="orderid" Type="Int32"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
 </asp:Content>
