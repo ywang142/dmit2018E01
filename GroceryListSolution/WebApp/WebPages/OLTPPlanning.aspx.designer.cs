@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.WebPages {
-    
-    
-    public partial class OLTPPlanning {
-        
+namespace WebApp.WebPages
+{
+
+
+    public partial class OLTPPlanning
+    {
+
         /// <summary>
         /// Label10 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label10;
-        
+
         /// <summary>
         /// MessageUserControl control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DMIT2018Common.UserControls.MessageUserControl MessageUserControl;
-        
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// CustomerID control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList CustomerID;
-        
+
         /// <summary>
         /// ArtistFetch control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ArtistFetch;
-        
+
         /// <summary>
         /// CustomerName control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label CustomerName;
-        
+
         /// <summary>
         /// Contact control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Contact;
-        
+
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-        
+
         /// <summary>
         /// DropDownList2 control.
         /// </summary>
@@ -92,16 +94,34 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
-        
+
         /// <summary>
-        /// Button1 control.
+        /// ListView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
+        protected global::System.Web.UI.WebControls.ListView ListView1;
+
+        /// <summary>
+        /// SaveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveButton;
+
+        /// <summary>
+        /// ListView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListView2;
+
         /// <summary>
         /// OrderDLL control.
         /// </summary>
@@ -110,7 +130,7 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource OrderDLL;
-        
+
         /// <summary>
         /// PickerDLL control.
         /// </summary>
@@ -119,14 +139,14 @@ namespace WebApp.WebPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource PickerDLL;
-        
+
         /// <summary>
-        /// OrderListODS control.
+        /// ObjectDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource OrderListODS;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
     }
 }

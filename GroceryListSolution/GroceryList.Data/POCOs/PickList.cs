@@ -10,6 +10,8 @@ namespace GroceryList.Data.POCOs
     {
         public int OrderID { get; set; }
 
+        public int OrderListID { get; set; }
+
         public string Product { get; set; }
 
         public double Qty { get; set; }
@@ -17,7 +19,6 @@ namespace GroceryList.Data.POCOs
         public string Comment { get; set; }
 
         public double Picked { get; set; }
-
 
         public string PickIssue { get; set; }
 
